@@ -8,7 +8,6 @@ public class DaysiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DaysiApplication.class, args);
-		
 	}
 
 }

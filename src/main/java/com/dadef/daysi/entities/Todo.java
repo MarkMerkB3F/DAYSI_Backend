@@ -15,6 +15,14 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Todo {
+
+    public Todo(UUID todoId, String title, String content, String category) {
+        TodoId = todoId;
+        Title = title;
+        Content = content;
+        Category = category;
+    }
+
     @Id
     private UUID TodoId;
     private String Title;
