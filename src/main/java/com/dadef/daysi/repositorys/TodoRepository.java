@@ -1,21 +1,24 @@
 package com.dadef.daysi.repositorys;
 
 import com.dadef.daysi.entities.Todo;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class TodoRepository {
-    Todo todo = new Todo(UUID.randomUUID(),"Lauchsuppe","Das Nielsferd steht am Herd","Kochen");
-
     public List<Todo> getAllTodos(){
-        ArrayList<Todo> todoList = new ArrayList<Todo>();
-        todoList.add(todo);
-        todoList.add(todo);
-        todoList.add(todo);
-        return todoList;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        try {
+            return objectMapper.readValue(new File("C:/Users/iansc/OneDrive/Desktop/Berufsschule/3.Lehrjahr/Projektwoche/daysi/src/main/java/mockdata/Todos.json"), new TypeReference<List<Todo>>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,22 +1,24 @@
 package com.dadef.daysi.repositorys;
 
 import com.dadef.daysi.entities.Note;
-import com.dadef.daysi.entities.Todo;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class NoteRepository {
-    Note note = new Note(UUID.randomUUID(),"Notiz an mich", LocalDateTime.now(),"Frank Rosin ist fassungslos","Kochen");
     public List<Note> getAllNotes(){
-        ArrayList<Note> todoList = new ArrayList<Note>();
-        todoList.add(note);
-        todoList.add(note);
-        todoList.add(note);
-        return todoList;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        try {
+            return objectMapper.readValue(new File("C:/Users/iansc/OneDrive/Desktop/Berufsschule/3.Lehrjahr/Projektwoche/daysi/src/main/java/mockdata/Notes.json"), new TypeReference<List<Note>>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

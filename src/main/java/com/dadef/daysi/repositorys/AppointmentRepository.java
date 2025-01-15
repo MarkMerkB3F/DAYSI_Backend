@@ -1,23 +1,24 @@
 package com.dadef.daysi.repositorys;
 
 import com.dadef.daysi.entities.Appointment;
-import com.dadef.daysi.entities.Todo;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class AppointmentRepository {
-    Appointment appointment = new Appointment(UUID.randomUUID(),"Daily", LocalDateTime.now(),LocalDateTime.now(),new ArrayList<>(),"Bielefeld");
     public List<Appointment> getAllAppointments(){
-        ArrayList<Appointment> appointmentList = new ArrayList<Appointment>();
-        appointmentList.add(appointment);
-        appointmentList.add(appointment);
-        appointmentList.add(appointment);
-        return appointmentList;
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        try {
+            return objectMapper.readValue(new File("C:/Users/iansc/OneDrive/Desktop/Berufsschule/3.Lehrjahr/Projektwoche/daysi/src/main/java/mockdata/Appointments.json"), new TypeReference<List<Appointment>>(){});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
