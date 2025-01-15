@@ -9,12 +9,13 @@ import java.util.UUID;
 
 @Repository
 public class TodoRepository {
-    public List<Todo> getAllTodos(){
+    Todo todo = new Todo(UUID.randomUUID(),"Lauchsuppe","Das Nielsferd steht am Herd","Kochen");
 
+    public List<Todo> getAllTodos(){
         ArrayList<Todo> todoList = new ArrayList<Todo>();
-        todoList.add(new Todo(UUID.randomUUID(),"Todo1","Ich muss was tun","Sonstiges"));
-        todoList.add(new Todo(UUID.randomUUID(),"Retro","Patschi Patschi vom Rebadschi","Scrum"));
-        todoList.add(new Todo(UUID.randomUUID(),"Lauchsuppe","Das Nielsferd steht am Herd","Kochen"));
+        todoList.add(todo);
+        todoList.add(todo);
+        todoList.add(todo);
         return todoList;
     }
 }

@@ -17,7 +17,7 @@ public class TodoController {
 
     @GetMapping("/todos")
     public List<Todo> getAllTodos(){
-        System.out.println("hat geklappt");
+        System.out.println("Alle vorhandenen Todos wurden versendet");
         return repository.getAllTodos();
     }
 }

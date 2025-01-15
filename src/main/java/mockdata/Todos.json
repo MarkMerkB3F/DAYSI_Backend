@@ -1,0 +1,20 @@
+[
+  {
+    "todoId": "e601bb43-3d62-4b56-bf7e-c4cc8370bcc3",
+    "title": "Todo1",
+    "content": "Ich muss was tun",
+    "category": "Sonstiges"
+  },
+  {
+    "todoId": "bfb68047-2f2e-4ff4-9c2c-ea16c567aa4d",
+    "title": "Retro",
+    "content": "Patschi Patschi vom Rebadschi",
+    "category": "Scrum"
+  },
+  {
+    "todoId": "fd318bdc-2060-4ac7-9342-fbd436abed5b",
+    "title": "Lauchsuppe",
+    "content": "Das Nielsferd steht am Herd",
+    "category": "Kochen"
+  }
+]
