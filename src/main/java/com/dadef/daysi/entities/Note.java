@@ -10,6 +10,8 @@ import java.util.UUID;
 @Data
 public class Note extends BaseEntity{
 
+    public Note(){}
+
     public Note(UUID todoId, String title, LocalDateTime creationDate, String content, String category) {
         Id = todoId;
         Title = title;

@@ -8,6 +8,8 @@ import java.util.UUID;
 @Data
 public class Todo extends BaseEntity{
 
+    public Todo(){}
+
     public Todo(UUID todoId, String title, String content, String category) {
         Id = todoId;
         Title = title;
