@@ -12,13 +12,19 @@ import java.util.List;
 
 @Repository
 public class TodoRepository {
+    ObjectMapper objectMapper = new ObjectMapper();
+
     public List<Todo> getAllTodos(){
-        ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         try {
             return objectMapper.readValue(new File("C:/Users/iansc/OneDrive/Desktop/Berufsschule/3.Lehrjahr/Projektwoche/daysi/src/main/java/mockdata/Todos.json"), new TypeReference<List<Todo>>(){});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void saveTodos(Todo todo) throws IOException {
+        //objectMapper.writeValue(new File("C:/Users/iansc/OneDrive/Desktop/Berufsschule/3.Lehrjahr/Projektwoche/daysi/src/main/java/mockdata/Todos.json"), todo);
+        //Todo: todo in Json File ueberfuehren, ohne sie zu ueberschreiben
     }
 }
