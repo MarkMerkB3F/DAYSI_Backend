@@ -14,7 +14,7 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/post/test")
+                registry.addMapping("/todos")
                         .allowedOrigins("http://localhost:4200/");
             }
         };

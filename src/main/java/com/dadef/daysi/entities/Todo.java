@@ -12,8 +12,6 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Getter
-@Setter
 public class Todo {
 
     public Todo(UUID todoId, String title, String content, String category) {
