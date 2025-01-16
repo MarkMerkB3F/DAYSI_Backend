@@ -8,5 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface BigChug {
 
+    @Mapping(target = "category", source = "todo.category")
     TodoDTO mapTodoEntityToTodoDto(Todo todo);
 }

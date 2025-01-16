@@ -1,9 +1,7 @@
 package com.dadef.daysi.controller;
 
 import com.dadef.daysi.entities.Note;
-import com.dadef.daysi.entities.Todo;
 import com.dadef.daysi.repositorys.NoteRepository;
-import com.dadef.daysi.repositorys.TodoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +16,7 @@ public class NoteController {
     }
 
     @GetMapping("/notes")
-    public List<Note> getAllTodos(){
+    public List<Note> getAllNotes(){
         System.out.println("Alle vorhandenen Notizen wurden versendet");
         return repository.getAllNotes();
     }

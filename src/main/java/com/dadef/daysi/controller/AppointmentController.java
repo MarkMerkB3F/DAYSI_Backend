@@ -1,9 +1,7 @@
 package com.dadef.daysi.controller;
 
 import com.dadef.daysi.entities.Appointment;
-import com.dadef.daysi.entities.Todo;
 import com.dadef.daysi.repositorys.AppointmentRepository;
-import com.dadef.daysi.repositorys.TodoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +16,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointments")
-    public List<Appointment> getAllTodos(){
+    public List<Appointment> getAllAppointments(){
         System.out.println("Alle vorhandenen Termine wurden versendet");
         return repository.getAllAppointments();
     }

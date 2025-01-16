@@ -4,7 +4,6 @@ import com.dadef.daysi.dtos.TodoDTO;
 import com.dadef.daysi.entities.Todo;
 import com.dadef.daysi.mapper.BigChug;
 import com.dadef.daysi.repositorys.TodoRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
