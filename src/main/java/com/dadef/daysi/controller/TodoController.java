@@ -16,11 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 public class TodoController {
     private final TodoRepository repository;
 
     private final BigChug bigChug;
+
+    public TodoController(TodoRepository repository, BigChug bigChug) {
+        this.repository = repository;
+        this.bigChug = bigChug;
+    }
 
     @GetMapping("/todos")
     public List<TodoDTO> getAllTodos(){

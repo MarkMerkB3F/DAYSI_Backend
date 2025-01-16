@@ -5,9 +5,8 @@ import com.dadef.daysi.entities.Todo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BigChug {
-    @Mapping(target = "Id", source = "todo.Id")
-    @Mapping(target = "Title", source = "todo.Title")
+
     TodoDTO mapTodoEntityToTodoDto(Todo todo);
 }
