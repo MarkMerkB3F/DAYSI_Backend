@@ -37,9 +37,9 @@ public class TodoController {
     }
 
     @PostMapping("/todos")
-    public HttpStatus saveTodos(@RequestBody Todo todo) throws IOException {
+    public HttpStatus saveTodos(@RequestBody TodoDTO todoDto) throws IOException {
         System.out.println("Alle erhaltenen Todos wurden gespeichert");
-        repository.saveTodos(todo);
+        repository.saveTodos(bigChug.mapTodoDtoToTodoEntity(todoDto));
         return HttpStatus.OK;
     }
 
