@@ -1,5 +1,6 @@
 package com.dadef.daysi.repositorys;
 
+import com.dadef.daysi.entities.BaseEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,10 +9,7 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,35 +27,38 @@ public class BaseRepository {
         }
     }
 
-    protected <T> void saveEntity(T entity) throws IOException {
+    protected void saveEntity(BaseEntity entity) throws IOException {
+        ArrayList<BaseEntity> entityList = getEntities();
+
+        entityList.add(entity);
+
+        writeToJsonFile(entityList);
+    }
+
+    protected ArrayList<BaseEntity> getEntities() throws FileNotFoundException {
+        objectMapper.registerModule(new JavaTimeModule());
         JSONParser parser = new JSONParser(new FileReader(databasePath));
 
-        ArrayList<T> obj = null;
         try {
-            obj = (ArrayList<T>) parser.parse();
+            return (ArrayList<BaseEntity>) parser.parse();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        obj.add(entity);
+    }
 
+    protected <T> void writeToJsonFile(ArrayList<T> newEntities){
         String jsonString = "";
 
-        ObjectMapper objectMapper = new ObjectMapper();
         try {
-            jsonString  = objectMapper.writeValueAsString(obj);
+            jsonString  = objectMapper.writeValueAsString(newEntities);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
-        WriteToJsonFile(jsonString);
-    }
-
-
-    void WriteToJsonFile(String inputData){
         FileWriter file = null;
         try {
             file = new FileWriter(databasePath);
-            file.write(inputData);
+            file.write(jsonString);
             file.flush();
             file.close();
         } catch (IOException e) {

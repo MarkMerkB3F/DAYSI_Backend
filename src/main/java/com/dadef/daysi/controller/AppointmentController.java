@@ -1,14 +1,14 @@
 package com.dadef.daysi.controller;
 
 import com.dadef.daysi.dtos.AppointmentDTO;
-import com.dadef.daysi.dtos.TodoDTO;
 import com.dadef.daysi.entities.Appointment;
-import com.dadef.daysi.entities.Todo;
 import com.dadef.daysi.mapper.BigChug;
 import com.dadef.daysi.repositorys.AppointmentRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jdk.jshell.spi.ExecutionControl;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +31,26 @@ public class AppointmentController {
             appointmentDtos.add(bigChug.mapAppointmentEntityToAppointmentDto(appointment));
         }
         return appointmentDtos;
+    }
+
+    @PostMapping("/appointments")
+    public HttpStatus saveAppointment(@RequestBody AppointmentDTO appointmentDTO) throws IOException {
+        repository.saveAppointment(bigChug.mapAppointmentDtoToAppointmentEntity(appointmentDTO));
+        System.out.println("Der erhaltene Termin wurden gespeichert");
+        return HttpStatus.OK;
+    }
+
+    @PutMapping("/appointments")
+    public HttpStatus updateAppointment(@RequestBody AppointmentDTO appointmentDTO) throws ExecutionControl.NotImplementedException, IOException {
+        repository.updateAppointment(bigChug.mapAppointmentDtoToAppointmentEntity(appointmentDTO));
+        System.out.println("Der erhaltene Termin wurde geupdated");
+        return HttpStatus.OK;
+    }
+
+    @DeleteMapping("/appointments")
+    public HttpStatus deleteAppointment(@RequestBody AppointmentDTO appointmentDTO) throws ExecutionControl.NotImplementedException, IOException {
+        repository.deleteAppointment(bigChug.mapAppointmentDtoToAppointmentEntity(appointmentDTO));
+        System.out.println("Der entsprechende Termin wurde geloescht");
+        return HttpStatus.OK;
     }
 }
